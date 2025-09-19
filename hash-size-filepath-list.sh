@@ -15,5 +15,5 @@ find \
 xargs \
     -0 \
     --max-procs "${THREAD_NUMBER}" \
-    sha256sum \
+    python3 hash-size-filepath-list.py \
 ;
