@@ -64,6 +64,35 @@ class TestDirectoryPathToFileEntryListMap(unittest.TestCase):
 
         self.assertEqual(directory_map, expected_map)
 
+    def test_multiple_files_same_directory_preserve_order(self):
+        file_entry1: FileEntry = ('A', 0, '/a')
+        file_entry2: FileEntry = ('B', 0, '/b')
+
+        directory_map1: DirectoryMap = {}
+        directory_path_to_file_entry_list_map(directory_map1, file_entry1)
+        directory_path_to_file_entry_list_map(directory_map1, file_entry2)
+
+        directory_map2: DirectoryMap = {}
+        directory_path_to_file_entry_list_map(directory_map2, file_entry2)
+        directory_path_to_file_entry_list_map(directory_map2, file_entry1)
+
+        expected_map1: DirectoryMap = {
+            '/': [
+                file_entry1,
+                file_entry2,
+            ],
+        }
+
+        expected_map2: DirectoryMap = {
+            '/': [
+                file_entry2,
+                file_entry1,
+            ],
+        }
+
+        self.assertEqual(directory_map1, expected_map1)
+        self.assertEqual(directory_map2, expected_map2)
+
     def test_accumulating_entries_different_directories(self):
         file_entry1: FileEntry = ('A', 0, '/0/0/a')
         file_entry2: FileEntry = ('B', 0, '/0/1/b')
@@ -99,7 +128,7 @@ class TestDirectoryPathToFileEntryListMap(unittest.TestCase):
         }
 
         self.assertEqual(directory_map, expected_map)
-    
+
     def test_mutation_behavior(self):
         file_entry1: FileEntry = ('A', 0, '/0/b')
 
