@@ -1,10 +1,10 @@
 import os
 from duplicated_subtrees_types import DirectoryMap
-from duplicated_subtrees_types import FileEntry
+from duplicated_subtrees_types import FileTuple
 
 def directory_path_to_file_entry_list_map(
     directory_path_to_file_entry_list_map: DirectoryMap, 
-    file_entry: FileEntry,
+    file_entry: FileTuple,
 ) -> None:
     file_path = file_entry[2]
     directory_path = os.path.dirname(file_path)
