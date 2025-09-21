@@ -1,12 +1,6 @@
 import os
-from typing import Dict, List, Tuple
-
-FileHash = str
-FileSize = int
-FilePath = str
-FileEntry = Tuple[FileHash, FileSize, FilePath]
-DirectoryPath = str
-DirectoryMap = Dict[DirectoryPath, List[FileEntry]]
+from duplicated_subtrees_types import DirectoryMap
+from duplicated_subtrees_types import FileEntry
 
 def directory_path_to_file_entry_list_map(
     directory_path_to_file_entry_list_map: DirectoryMap, 
