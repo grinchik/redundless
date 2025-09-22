@@ -1,4 +1,4 @@
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, FrozenSet
 
 Line = str
 LineList = List[Line]
@@ -16,3 +16,8 @@ FileEntry = Tuple[DirectoryPath, Tuple[FileHash, FileSize, FileName]]
 FileEntryList = List[FileEntry]
 FileEntityListGroupByDirectoryPath = Dict[DirectoryPath, FileEntityList]
 DuplicatedSubTreeList = List[List[DirectoryPath]]
+DirectoryPathFrozenSetByFileEntrySet = \
+    Dict[
+        FrozenSet[FileEntity],
+        List[DirectoryPath],
+    ]
