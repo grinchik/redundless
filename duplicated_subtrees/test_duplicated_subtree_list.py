@@ -2,11 +2,11 @@ import unittest
 
 from duplicated_subtree_list import duplicated_subtree_list
 
-from duplicated_subtrees_types import DuplicatedSubTreeList
+from duplicated_subtrees_types import DirectoryPathGroupList
 
 class TestDuplicatedSubtreeList(unittest.TestCase):
     def test_no_groups_with_duplicates(self):
-        input: DuplicatedSubTreeList = [
+        input: DirectoryPathGroupList = [
             [
                 '/0',
             ],
@@ -23,7 +23,7 @@ class TestDuplicatedSubtreeList(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
     def test_mixed_groups(self):
-        input: DuplicatedSubTreeList = [
+        input: DirectoryPathGroupList = [
             [
                 '/0',
                 '/2',
@@ -45,7 +45,7 @@ class TestDuplicatedSubtreeList(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
     def test_multiple_groups_with_duplicates(self):
-        input: DuplicatedSubTreeList = [
+        input: DirectoryPathGroupList = [
             [
                 '/0',
                 '/2',

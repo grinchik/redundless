@@ -1,11 +1,11 @@
 import os
 from duplicated_subtrees_types import DirectoryMap
 from duplicated_subtrees_types import DirectoryPath
-from duplicated_subtrees_types import FileTuple
+from duplicated_subtrees_types import FileEntry
 
 def directory_path_to_file_entry_list_map(
     directory_path_to_file_entry_list_map: DirectoryMap, 
-    file_entry: FileTuple,
+    file_entry: FileEntry,
 ) -> None:
     file_hash = file_entry[0]
     file_size = file_entry[1]

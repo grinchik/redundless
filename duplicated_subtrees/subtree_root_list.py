@@ -1,14 +1,14 @@
 import itertools
 import os
 
-from duplicated_subtrees_types import DuplicatedSubTreeList
+from duplicated_subtrees_types import DirectoryPathGroupList
 
 def subtree_root_list(
-    subtree_list: DuplicatedSubTreeList, 
-) -> DuplicatedSubTreeList:
+    subtree_list: DirectoryPathGroupList, 
+) -> DirectoryPathGroupList:
     dir_set = set(itertools.chain.from_iterable(subtree_list))
 
-    result: DuplicatedSubTreeList = []
+    result: DirectoryPathGroupList = []
 
     for dup_dir_path_list in subtree_list:
         subresult = \

@@ -1,9 +1,9 @@
-from duplicated_subtrees_types import DuplicatedSubTreeList
+from duplicated_subtrees_types import DirectoryPathGroupList
 
 def duplicated_subtree_list(
-    directory_path_group_list: DuplicatedSubTreeList, 
-) -> DuplicatedSubTreeList:
-    result: DuplicatedSubTreeList = []
+    directory_path_group_list: DirectoryPathGroupList, 
+) -> DirectoryPathGroupList:
+    result: DirectoryPathGroupList = []
 
     for directory_path_group in directory_path_group_list:
         if len(directory_path_group) > 1:
