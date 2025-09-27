@@ -6,6 +6,8 @@ def directory_path_to_file_entry_list_map(
     directory_path_to_file_entry_list_map: DirectoryMap, 
     file_entry: FileTuple,
 ) -> None:
+    file_hash = file_entry[0]
+    file_size = file_entry[1]
     file_path = file_entry[2]
     directory_path = os.path.dirname(file_path)
 
@@ -13,7 +15,13 @@ def directory_path_to_file_entry_list_map(
         if directory_path not in directory_path_to_file_entry_list_map:
             directory_path_to_file_entry_list_map[directory_path] = []
 
-        directory_path_to_file_entry_list_map[directory_path].append(file_entry)
+        file_name = file_path \
+            .removeprefix(directory_path) \
+            .removeprefix('/')
+
+        directory_path_to_file_entry_list_map[directory_path].append(
+            (file_hash, int(file_size), file_name),
+        )
 
         if directory_path == '/':
             break
