@@ -16,3 +16,10 @@ bash ./hash-size-filepath-list.sh /storage $(nproc) > storage.hash-size-filepath
 ```
 
 Here `/storage` is the starting directory to traverse, and `$(nproc)` returns the number of CPU cores.
+
+
+## Getting the highest-level duplicate directory groups
+
+```
+cat storage.hash-size-filepath-list.txt | python3 duplicated_subtrees/main.py
+```
