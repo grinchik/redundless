@@ -1,4 +1,4 @@
-from typing import Dict, List, Tuple, FrozenSet
+from typing import Dict, List, Tuple, FrozenSet, DefaultDict
 
 Line = str
 LineList = List[Line]
@@ -9,7 +9,7 @@ FilePath = str
 FileName = str
 FileTuple = Tuple[FileHash, FileSize, FilePath]
 DirectoryPath = str
-DirectoryMap = Dict[DirectoryPath, List[FileTuple]]
+DirectoryMap = DefaultDict[DirectoryPath, List[FileTuple]]
 FileEntity = Tuple[FileHash, FileSize, FileName]
 FileEntityList = List[FileEntity]
 FileEntry = Tuple[DirectoryPath, FileEntity]
