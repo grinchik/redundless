@@ -2,11 +2,11 @@ import unittest
 
 from collections import defaultdict
 
-from directory_path_group_list import directory_path_group_list
+from directory_path_list_by_file_entity_list_set import directory_path_list_by_file_entity_list_set
 
 from duplicated_subtrees_types import DirectoryMap
 
-class TestDirectoryPathGroup(unittest.TestCase):
+class TestDirectoryPathListByFileEntityListSet(unittest.TestCase):
     def test_root_single_file(self):
         directory_map: DirectoryMap = defaultdict(list, {
             '/': [
@@ -15,13 +15,15 @@ class TestDirectoryPathGroup(unittest.TestCase):
         })
 
         result = \
-            directory_path_group_list(directory_map)
+            directory_path_list_by_file_entity_list_set(directory_map)
 
-        expected_result = [
-            [
+        expected_result = {
+            frozenset([
+                ('A', 0, 'a'),
+            ]): [
                 '/',
             ],
-        ]
+        }
 
         self.assertEqual(result, expected_result)
 
@@ -39,19 +41,25 @@ class TestDirectoryPathGroup(unittest.TestCase):
         })
 
         result = \
-            directory_path_group_list(directory_map)
+            directory_path_list_by_file_entity_list_set(directory_map)
 
-        expected_result = [
-            [
+        expected_result = {
+            frozenset([
+                ('A', 0, 'a'),
+            ]): [
                 '/0/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/a'),
+            ]): [
                 '/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/0/a'),
+            ]): [
                 '/',
             ],
-        ]
+        }
 
         self.assertEqual(result, expected_result)
 
@@ -72,19 +80,28 @@ class TestDirectoryPathGroup(unittest.TestCase):
         })
 
         result = \
-            directory_path_group_list(directory_map)
+            directory_path_list_by_file_entity_list_set(directory_map)
 
-        expected_result = [
-            [
+        expected_result = {
+            frozenset([
+                ('A', 0, 'a'),
+                ('B', 0, 'b'),
+            ]): [
                 '/0/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/a'),
+                ('B', 0, '0/b'),
+            ]): [
                 '/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/0/a'),
+                ('B', 0, '0/0/b'),
+            ]): [
                 '/',
             ],
-        ]
+        }
 
         self.assertEqual(result, expected_result)
 
@@ -115,21 +132,32 @@ class TestDirectoryPathGroup(unittest.TestCase):
         })
 
         result = \
-            directory_path_group_list(directory_map)
+            directory_path_list_by_file_entity_list_set(directory_map)
 
-        expected_result = [
-            [
+        expected_result = {
+            frozenset([
+                ('A', 0, 'a'),
+                ('B', 0, 'b'),
+            ]): [
                 '/1/0',
                 '/0/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/a'),
+                ('B', 0, '0/b'),
+            ]): [
                 '/1',
                 '/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '1/0/a'),
+                ('B', 0, '1/0/b'),
+                ('A', 0, '0/0/a'),
+                ('B', 0, '0/0/b'),
+            ]): [
                 '/',
             ],
-        ]
+        }
 
         self.assertEqual(result, expected_result)
 
@@ -150,19 +178,28 @@ class TestDirectoryPathGroup(unittest.TestCase):
         })
 
         result = \
-            directory_path_group_list(directory_map)
+            directory_path_list_by_file_entity_list_set(directory_map)
 
-        expected_result = [
-            [
+        expected_result = {
+            frozenset([
+                ('A', 0, 'a'),
+                ('B', 0, 'b'),
+            ]): [
                 '/0/0',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/0/a'),
+                ('B', 0, '0/0/b'),
+            ]): [
                 '/',
             ],
-            [
+            frozenset([
+                ('A', 0, '0/a'),
+                ('B', 0, '0/b'),
+            ]): [
                 '/0',
             ],
-        ]
+        }
 
         self.assertEqual(result, expected_result)
 
