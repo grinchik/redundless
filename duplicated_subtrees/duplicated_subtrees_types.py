@@ -25,3 +25,10 @@ FileSignatureToDirectoryPathGroupList = List[
         DirectoryPathGroup,
     ]
 ]
+FileSizeSum = FileSize
+OutputStructure = List[
+    Tuple[
+        FileSizeSum,
+        DirectoryPathGroup
+    ]
+]
