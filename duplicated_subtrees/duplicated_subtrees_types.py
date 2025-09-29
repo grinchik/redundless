@@ -17,4 +17,11 @@ DirectoryPathListByFileEntrySet = \
         FrozenSet[FileEntry],
         List[DirectoryPath],
     ]
-FileHashSet = Set[FileHash]
+FileSignature = FrozenSet[Tuple[FileHash, FileSize]]
+FileHashSet = Set[Tuple[FileHash, FileSize]]
+FileSignatureToDirectoryPathGroupList = List[
+    Tuple[
+        FileSignature,
+        DirectoryPathGroup,
+    ]
+]

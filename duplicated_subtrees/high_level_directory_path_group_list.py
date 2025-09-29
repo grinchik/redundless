@@ -1,6 +1,6 @@
 from duplicated_subtrees_types import DirectoryPathListByFileEntrySet
 from duplicated_subtrees_types import FileHashSet
-from duplicated_subtrees_types import DirectoryPathGroupList
+from duplicated_subtrees_types import FileSignatureToDirectoryPathGroupList
 
 def high_level_directory_path_group_list(
     directory_path_list_by_file_entry_set_dict: DirectoryPathListByFileEntrySet, 
@@ -23,10 +23,10 @@ def high_level_directory_path_group_list(
         if len(x[1]) > 1
     ]
 
-    # Mapping file entity to file hash only
+    # Mapping file entity to file hash and file size only
     step_4 = [
         (
-            frozenset([item[0] for item in group[0]]),
+            frozenset([(item[0], item[1]) for item in group[0]]),
             group[1],
         )
         for group in step_3
@@ -34,12 +34,12 @@ def high_level_directory_path_group_list(
 
     # Rejecting directory path group if file hash set has already been included
     included_file_hash_set: FileHashSet = set()
-    result: DirectoryPathGroupList = []
+    result: FileSignatureToDirectoryPathGroupList = []
 
     for file_hash_set, directory_path_group in step_4:
         if file_hash_set.issubset(included_file_hash_set): continue
 
         included_file_hash_set.update(file_hash_set)
-        result.append(directory_path_group)
+        result.append((file_hash_set, directory_path_group))
 
     return result
