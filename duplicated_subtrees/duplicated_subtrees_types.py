@@ -8,6 +8,7 @@ FileSize = int
 FilePath = str
 FileName = str
 FileEntry = Tuple[FileHash, FileSize, FilePath]
+FileEntryList = List[FileEntry]
 DirectoryPath = str
 DirectoryMap = DefaultDict[DirectoryPath, List[FileEntry]]
 DirectoryPathGroup = List[DirectoryPath]
