@@ -21,5 +21,5 @@ Here `/storage` is the starting directory to traverse, and `$(nproc)` returns th
 ## Getting the highest-level duplicate directory groups
 
 ```
-cat storage.hash-size-filepath-list.txt | python3 duplicated_subtrees/main.py
+cat storage.hash-size-filepath-list.txt | python3 duplicated_subtrees/filter.py | python3 duplicated_subtrees/main.py
 ```
