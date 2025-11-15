@@ -17,4 +17,11 @@ if __name__ == '__main__':
     result = duplicate_subtree_roots(file_entry_list)
     result = sorted(result, key=lambda x: x[0], reverse=True)
 
-    print(json.dumps(to_output(result), indent=4, default=list))
+    print(
+        json.dumps(
+            to_output(result),
+            ensure_ascii=False,
+            indent=4,
+            default=list,
+        )
+    )
