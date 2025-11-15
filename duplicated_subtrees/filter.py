@@ -11,8 +11,8 @@ Postfix = str
 EXCLUDED_SET: FrozenSet[FilePath] = frozenset([
 ])
 
-PREFIX_LIST: List[Prefix] = [
-]
+PREFIX_SET: FrozenSet[Prefix] = frozenset([
+])
 
 POSTFIX_LIST: List[Postfix] = [
     '/.DS_Store',
@@ -20,11 +20,23 @@ POSTFIX_LIST: List[Postfix] = [
     '/desktop.ini',
 ]
 
+def prefix_matches(file_path: FilePath, prefix_set: FrozenSet[Prefix]):
+    prefix = os.path.dirname(file_path)
+
+    while True:
+        if prefix in prefix_set:
+            return True
+
+        prefix: Prefix = os.path.dirname(prefix)
+
+        if prefix == '/':
+            return False
+
 def should_filter_file_path(file_path: FilePath) -> bool:
     if os.path.dirname(file_path) in EXCLUDED_SET:
         return True
 
-    if any(file_path.startswith(prefix) for prefix in PREFIX_LIST):
+    if prefix_matches(file_path, PREFIX_SET):
         return True
 
     if any(file_path.endswith(postfix) for postfix in POSTFIX_LIST):
