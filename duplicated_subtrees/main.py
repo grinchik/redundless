@@ -15,11 +15,10 @@ if __name__ == '__main__':
         file_entry_list.append(file_entry)
 
     result = duplicate_subtree_roots(file_entry_list)
-    result = sorted(result, key=lambda x: x[0], reverse=True)
 
     print(
         json.dumps(
-            to_output(result),
+            sorted(to_output(result), key=lambda x: x[0], reverse=True),
             ensure_ascii=False,
             indent=4,
             default=list,
