@@ -6,6 +6,7 @@ from typing import FrozenSet
 
 FilePath = str
 Prefix = str
+Infix = str
 Postfix = str
 
 EXCLUDED_SET: FrozenSet[FilePath] = frozenset([
@@ -13,6 +14,10 @@ EXCLUDED_SET: FrozenSet[FilePath] = frozenset([
 
 PREFIX_SET: FrozenSet[Prefix] = frozenset([
 ])
+
+INFIX_LIST: List[Infix] = [
+    '/.fseventsd/',
+]
 
 POSTFIX_LIST: List[Postfix] = [
     '/.DS_Store',
@@ -37,6 +42,9 @@ def should_filter_file_path(file_path: FilePath) -> bool:
         return True
 
     if prefix_matches(file_path, PREFIX_SET):
+        return True
+
+    if any(infix in file_path for infix in INFIX_LIST):
         return True
 
     if any(file_path.endswith(postfix) for postfix in POSTFIX_LIST):
